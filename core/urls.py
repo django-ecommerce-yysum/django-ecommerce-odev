@@ -9,13 +9,28 @@ from .views import (
     remove_single_item_from_cart,
     PaymentView,
     AddCouponView,
-    RequestRefundView
+    RequestRefundView,
+    AyakkabiView,
+    TisortView,
+    SweatView,
+    MontView,
+    CantaView,
+    ArtanFiyatView,
+    AzalanFiyatView
+    
 )
 
 app_name = 'core'
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    path('', HomeView.as_view(), name='home_view'),
+    path('artanFiyat', ArtanFiyatView.as_view(), name='artanfiyat_view'),
+    path('azalanFiyat', AzalanFiyatView.as_view(), name='azalanfiyat_view'),
+    path('montlar', MontView.as_view(), name='mont_view'),
+    path('tisortler', TisortView.as_view(), name='tisort_view'),
+    path('sweatler', SweatView.as_view(), name='sweat_view'),
+    path('ayakkabilar', AyakkabiView.as_view(), name='ayakkabi_view'),
+    path('cantalar', CantaView.as_view(), name='canta_view'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
     path('order-summary/', OrderSummaryView.as_view(), name='order-summary'),
     path('product/<slug>/', ItemDetailView.as_view(), name='product'),

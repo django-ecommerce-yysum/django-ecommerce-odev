@@ -46,6 +46,10 @@ class Item(models.Model):
 
     def __str__(self):
         return self.title
+    # def get_kategori(self):
+    #     return reverse("core:home", kwargs={
+    #         'slug': self.slug
+    #     })
 
     def get_absolute_url(self):
         return reverse("core:product", kwargs={

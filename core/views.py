@@ -343,12 +343,102 @@ class PaymentView(View):
 
         messages.warning(self.request, "Invalid data received")
         return redirect("/payment/stripe/")
-
-
+def get_queryset(self):
+        return Item.objects.filter(category="aksesuar")
 class HomeView(ListView):
     model = Item
-    paginate_by = 10
+    paginate_by = 12
     template_name = "home.html"
+     
+    # def get_queryset(self):
+    #     return Item.objects.filter(category="aksesuar")
+
+
+
+class MontView(ListView):
+    model = Item
+    paginate_by = 8
+    template_name = "home.html"
+     
+    def get_queryset(self):
+        return Item.objects.filter(category="mont")
+    
+class TisortView(ListView):
+    model = Item
+    paginate_by = 8
+    template_name = "home.html"
+     
+    def get_queryset(self):
+        return Item.objects.filter(category="tişört")
+    
+    
+class SweatView(ListView):
+    model = Item
+    paginate_by = 8
+    template_name = "home.html"
+     
+    def get_queryset(self):
+        return Item.objects.filter(category="sweat")
+    
+class AyakkabiView(ListView):
+    model = Item
+    paginate_by = 8
+    template_name = "home.html"
+     
+    def get_queryset(self):
+        return Item.objects.filter(category="ayakkabı")
+    
+    
+    
+class CantaView(ListView):
+    model = Item
+    paginate_by = 8
+    template_name = "home.html"
+     
+    def get_queryset(self):
+        return Item.objects.filter(category="çanta")
+    
+    
+    
+class ArtanFiyatView(ListView):
+    model = Item
+    paginate_by = 12
+    template_name = "home.html"
+     
+    def get_queryset(self):
+        # Tüm ürünleri çek
+        # queryset = Item.objects.all()
+
+        # # Fiyata göre sırala (artan sıralama)
+        # queryset = queryset.order_by('price')
+
+        # return queryset
+        items = Item.objects.all().order_by('discount_price')
+        
+        return items
+
+
+
+
+
+class AzalanFiyatView(ListView):
+    model = Item
+    paginate_by = 12
+    template_name = "home.html"
+     
+    def get_queryset(self):
+        # Tüm ürünleri çek
+        # queryset = Item.objects.all()
+
+        # # Fiyata göre sırala (artan sıralama)
+        # queryset = queryset.order_by('price')
+
+        # return queryset
+        items = Item.objects.all().order_by('-discount_price')
+        
+        return items
+
+
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
